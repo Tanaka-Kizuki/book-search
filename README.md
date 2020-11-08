@@ -1,20 +1,9 @@
-# book-search
+# OpenDB書籍検索アプリ
 
-## Build Setup
+## アプリ機能
+検索欄にISBNコードを入力することで、書籍下記詳細を表示する
 
-```bash
-# install dependencies
-$ npm install
 
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+### ISBNコードとは
+・ISBN（アイエスビーエヌ）は、International Standard Book Number の略称
+・13桁で構成される( ISBN ●●● – ▲▲ – ■■■■ – ○○○○ – △ )
