@@ -1,15 +1,34 @@
 <template>
   <div class="container">
     <div>
+      <h1>Book Search</h1>
       <input type="text" v-model="isbn">
       <button class="button" v-on:click="search">Search</button>
-      <h2 class="title">
-        {{ title }}
-        {{ author }}
-        {{ publisher }}
-        {{ pubdate }}
-      </h2>
-      <img v-bind:src="cover">
+      <div v-if="show">
+        <table>
+          <tr><th>書籍詳細</th></tr>
+          <tr>
+            <th>署名</th>
+            <th>{{ title }}</th>
+          </tr>
+          <tr>
+            <th>表紙</th>
+            <th><img v-bind:src="cover"></th>
+          </tr>
+          <tr>
+            <th>著名</th>
+            <th>{{ author }}</th>
+          </tr>
+          <tr>
+            <th>出版社</th>
+            <th>{{ publisher }}</th>
+          </tr>
+          <tr>
+            <th>出版年</th>
+            <th>{{ pubdate }}</th>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -23,18 +42,19 @@ export default {
     pubdate:"",
     cover:"",
     isbn:"",
+    show:false,
   }),
   methods:{
     search(){
       const url = "https://api.openbd.jp/v1/get?isbn=" + this.isbn;
       axios.get(url)
       .then((res) => {
-        console.log(res.data[0].summary)
         this.title = res.data[0].summary.title;
         this.author = res.data[0].summary.author;
         this.publisher = res.data[0].summary.publisher;
         this.pubdate = res.data[0].summary.pubdate;
         this.cover = res.data[0].summary.cover;
+        this.show = true;
       })
     }
   }
@@ -65,7 +85,7 @@ export default {
   text-align: center;
 }
 
-.title {
+/* .title {
   font-family:
     'Quicksand',
     'Source Sans Pro',
@@ -93,5 +113,5 @@ export default {
 
 .links {
   padding-top: 15px;
-}
+} */
 </style>
